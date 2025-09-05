@@ -8,10 +8,15 @@ public class PhysicsBase : MonoBehaviour
     public Vector2 velocity;
     public float gravityFactor;
     public float desiredx;
+    public Boolean powerJump = false;
 
     public Boolean grounded = false;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+
+    }
+
     void Start()
     {
 
@@ -56,7 +61,7 @@ public class PhysicsBase : MonoBehaviour
         transform.position += (Vector3)move;
     }
 
-    public void Collide(Collider2D other)
+    public virtual void Collide(Collider2D other)
     {
         if (other.gameObject.CompareTag("Lethal"))
         {
@@ -68,9 +73,10 @@ public class PhysicsBase : MonoBehaviour
     {
         Collide(other);
     }
-    
+
     public virtual void CollideVertical(Collider2D other)
     {
         Collide(other);
     }
+    
 }
