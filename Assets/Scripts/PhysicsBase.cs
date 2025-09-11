@@ -63,10 +63,7 @@ public class PhysicsBase : MonoBehaviour
 
     public virtual void Collide(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Lethal"))
-        {
-            Debug.Log("RIP");
-        }
+        
     }
 
     public virtual void CollideHorizontal(Collider2D other)
@@ -78,5 +75,5 @@ public class PhysicsBase : MonoBehaviour
     {
         Collide(other);
     }
-    
+
 }

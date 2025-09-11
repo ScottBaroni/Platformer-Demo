@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 841a66bbf03c6a54aa1970b62b19b673
+  - enabled: 1
+    path: Assets/Scenes/Bookworming.unity
+    guid: a9aae3580712cea43b3d99fa21b73c18
   m_configObjects: {}

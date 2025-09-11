@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : PhysicsBase
@@ -9,6 +10,11 @@ public class PlayerController : PhysicsBase
 
     public float fasterDescentGrav = 2.0f;
     public float speed = 4.5f;
+    public GameOverScreen gameOverScreen;
+    public int lives = 3;
+    public int score = 0;
+    public TextMeshProUGUI currScore;
+    //public PowerupRespawn powerupRespawn;
 
     // Start is called before the first frame update
     void Start()
@@ -41,14 +47,35 @@ public class PlayerController : PhysicsBase
 
     public override void Collide(Collider2D other)
     {
-        base.Collide(other);
+        if (other.gameObject.CompareTag("Lethal"))
+        {
+            GameOver();
+        }
 
         if (other.gameObject.CompareTag("Powerup"))
         {
             Debug.Log("Collected powerup!");
             powerJump = true;
-            other.gameObject.SetActive(false);
+            other.GetComponentInParent<PowerupRespawn>().Collected();
         }
+
+        if (other.gameObject.CompareTag("Collectable"))
+        {
+            Debug.Log("Collected crumb!");
+            other.gameObject.SetActive(false);
+            UpdateScore();
+        }
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.Setup(score);
+    }
+
+    public void UpdateScore()
+    {
+        score++;
+        currScore.text = "Score: " + score;
     }
 
 }
