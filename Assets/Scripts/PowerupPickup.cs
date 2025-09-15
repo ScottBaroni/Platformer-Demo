@@ -8,12 +8,12 @@ public class PowerupPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Tell parent to handle respawn
-            GetComponentInParent<PowerupRespawn>().Collected();
-
             // Apply effect to player here
             Debug.Log("Player got powerup!");
-            other.GetComponent<PlayerController>().powerJump = true;
+            other.GetComponent<PlayerMovement>().powerJump = true;
+
+            // Tell parent to handle respawn
+            GetComponentInParent<PowerupRespawn>().Collected();
         }
     }
 }

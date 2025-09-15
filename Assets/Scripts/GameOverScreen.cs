@@ -10,12 +10,12 @@ public class GameOverScreen : MonoBehaviour
     public GameObject player;
     public GameObject inGameUI;
 
-    public void Setup(int totalScore)
+    public void Setup(int score)
     {
         inGameUI.SetActive(false);
-        player.gameObject.GetComponent<PlayerController>().enabled = false;
+        player.gameObject.GetComponent<PlayerMovement>().enabled = false;
         gameObject.SetActive(true);
-        scoreTxt.text = "Score: " + totalScore.ToString();
+        scoreTxt.text = "Score: " + score;
     }
 
     public void RestartButton()
