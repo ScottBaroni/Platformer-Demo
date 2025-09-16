@@ -24,10 +24,14 @@ public class PlayerMovement : MonoBehaviour
 
     public GameOverScreen gameOverScreen;
 
+    Animator animator;
+    Boolean facingRight = true;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,6 +40,16 @@ public class PlayerMovement : MonoBehaviour
         // Movement
         move = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
+        animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
+
+        if (move > 0 && !facingRight)
+        {
+            Flip();
+        }
+        if (move < 0 && facingRight)
+        {
+            Flip();
+        }
 
         // Checking if on ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -60,6 +74,15 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = defaultGravity;
         }
+    }
+
+    // Flip the sprite for walking
+    void Flip()
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+        facingRight = !facingRight;
     }
 
     public void DisplayGameOver()
