@@ -95,4 +95,9 @@ public class PlayerMovement : MonoBehaviour
         score++;
         currScore.text = "Score: " + score;
     }
+
+    public int GetScore()
+    {
+        return score;
+    }
 }
