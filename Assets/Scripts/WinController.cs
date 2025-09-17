@@ -11,13 +11,15 @@ public class WinController : MonoBehaviour
     public GameObject inGameUI;
     public PlayerMovement player;
     public Stopwatch stopwatch;
+    public AudioSource bgMusic;
+    public AudioSource winMusic;
     public TextMeshProUGUI totalScoreTxt;
     public TextMeshProUGUI timeTxt;
     public TextMeshProUGUI timeBonTxt;
     public int score;
     public int totalTime;
     public int timeBonus = 0;
-    public int targetTime = 60;
+    public int targetTime = 180;
     public int bonusMult = 5;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,17 +32,23 @@ public class WinController : MonoBehaviour
 
     private void Setup()
     {
+        // Change music
+        bgMusic.Stop();
+        winMusic.Play();
+
+        // Change UI
         winUI.SetActive(true);
         stopwatch.StopStopwatch();
         inGameUI.SetActive(false);
+
+        // Get time and score
         score = player.GetScore();
         totalTime = stopwatch.getTime();
         timeTxt.text = "Total Time: " + totalTime + "s";
 
-        // Calculate time bonus
+        // Calculate time bonus and total score
         timeBonus = Math.Max(0, targetTime - totalTime) * bonusMult;
         timeBonTxt.text = "Time Bonus: " + timeBonus;
-
         totalScoreTxt.text = "Score: " + (score + timeBonus);
     }
 }
