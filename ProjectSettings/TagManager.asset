@@ -7,6 +7,7 @@ TagManager:
   - Lethal
   - Powerup
   - Collectable
+  - Audio
   layers:
   - Default
   - TransparentFX

@@ -11,8 +11,7 @@ public class WinController : MonoBehaviour
     public GameObject inGameUI;
     public PlayerMovement player;
     public Stopwatch stopwatch;
-    public AudioSource bgMusic;
-    public AudioSource winMusic;
+    public AudioManager audioManager;
     public TextMeshProUGUI totalScoreTxt;
     public TextMeshProUGUI timeTxt;
     public TextMeshProUGUI timeBonTxt;
@@ -33,8 +32,7 @@ public class WinController : MonoBehaviour
     private void Setup()
     {
         // Change music
-        bgMusic.Stop();
-        winMusic.Play();
+        audioManager.switchMusic();
 
         // Change UI
         winUI.SetActive(true);

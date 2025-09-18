@@ -23,9 +23,15 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
 
     public GameOverScreen gameOverScreen;
+    AudioManager audioManager;
 
     Animator animator;
     Boolean facingRight = true;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
         // Jumping
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            // Play jump sfx
+            audioManager.playSFX(audioManager.jumpSFX);
             if (powerJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jump * powerJumpMod);
@@ -87,6 +95,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void DisplayGameOver()
     {
+        // Play death sound
+        audioManager.playSFX(audioManager.deathSFX);
         gameOverScreen.Setup(score);
     }
 
