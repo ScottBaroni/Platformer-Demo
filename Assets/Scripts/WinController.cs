@@ -15,11 +15,15 @@ public class WinController : MonoBehaviour
     public TextMeshProUGUI totalScoreTxt;
     public TextMeshProUGUI timeTxt;
     public TextMeshProUGUI timeBonTxt;
-    public int score;
-    public int totalTime;
+    public TextMeshProUGUI scoreTxt;
+    public TextMeshProUGUI crumbBonTxt;
     public int timeBonus = 0;
     public int targetTime = 180;
     public int bonusMult = 5;
+    public int crumbMult = 2;
+    int crumbBonus;
+    int score;
+    int totalTime;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,10 +47,13 @@ public class WinController : MonoBehaviour
         score = player.GetScore();
         totalTime = stopwatch.getTime();
         timeTxt.text = "Total Time: " + totalTime + "s";
+        scoreTxt.text = "Crumbs Collected: " + score;
 
-        // Calculate time bonus and total score
+        // Calculate time and crumb bonus and total score
         timeBonus = Math.Max(0, targetTime - totalTime) * bonusMult;
+        crumbBonus = score * crumbMult;
         timeBonTxt.text = "Time Bonus: " + timeBonus;
-        totalScoreTxt.text = "Score: " + (score + timeBonus);
+        crumbBonTxt.text = "Crumb Bonus: " + crumbBonus;
+        totalScoreTxt.text = "Total Score: " + (crumbBonus + timeBonus);
     }
 }
