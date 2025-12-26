@@ -21,5 +21,5 @@ Music:
 
 # Author
 * Scott Baroni  
-  - GitHub: [ArcaneWorm](https://github.com/ArcaneWorm)
+  - GitHub: [ScottBaroni](https://github.com/ScottBaroni)
   - Email: sbaroni2004@gmail.com
